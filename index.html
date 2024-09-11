@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>תצוגה מקדימה לפרסום לינקים בסושיאל</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      direction: rtl;
+      font-family: Arial, sans-serif;
+      background-color: #f0f2f5;
+    }
+    .container {
+      width: 100%;
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: white;
+      border: 1px solid #dddfe2;
+      border-radius: 8px;
+      padding: 20px;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 20px 0;
+      font-size: 1em;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4267B2;
+      color: white;
+      border: none;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .tabs {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+      margin-top: 20px; /* ריווח נוסף בין הטאבים לכפתור */
+    }
+    .tab {
+      cursor: pointer;
+      padding: 10px;
+      background-color: #f0f2f5;
+      border: 1px solid #dddfe2;
+      border-radius: 5px;
+    }
+    .tab.active {
+      background-color: white;
+      border-bottom: none;
+      font-weight: bold;
+    }
+    .preview {
+      display: none;
+      margin-top: 20px;
+      border: 1px solid #dddfe2;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .preview.active {
+      display: block;
+    }
+    .preview-header {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+    }
+    .preview-header img {
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      margin-left: 10px;
+    }
+    .preview-header div {
+      font-size: 14px;
+      color: #4b4f56;
+    }
+    .preview-header div strong {
+      display: block;
+      font-size: 16px;
+      color: black;
+    }
+    .preview-content img {
+      width: 100%;
+      height: auto;
+    }
+    .preview-body {
+      padding: 10px;
+      border-top: 1px solid #dddfe2;
+    }
+    .preview-body h3 {
+      font-size: 16px;
+      margin: 10px 0;
+      color: #1d2129;
+    }
+    .preview-body p {
+      font-size: 14px;
+      color: #606770;
+    }
+    .preview-footer, .preview-actions {
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid #dddfe2;
+      color: #606770;
+      font-size: 14px;
+    }
+    .preview-footer div, .preview-actions button {
+      display: flex;
+      align-items: center;
+    }
+    .preview-actions button {
+      background: none;
+      border: none;
+      color: #606770;
+      cursor: pointer;
+    }
+    .preview-actions button i {
+      margin-left: 5px;
+    }
+    .preview-actions button:hover {
+      text-decoration: underline;
+    }
+    .hidden {
+      display: none;
+    }
+    .whatsapp-container {
+      background-color: white; /* צבע רקע לבן */
+      border: 1px solid #dddfe2; /* מסגרת אפורה דקה */
+      border-radius: 8px;
+      padding: 10px;
+      max-width: 300px;
+      margin: 0 auto;
+      box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
+    }
+    .whatsapp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 5px;
+    }
+    .whatsapp-logo {
+      width: 20px;
+      height: 20px;
+    }
+    .whatsapp-time {
+      font-size: 12px;
+      color: #667781;
+    }
+    .whatsapp-content {
+      background-color: white;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .whatsapp-main-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .whatsapp-title {
+      font-size: 16px;
+      font-weight: bold;
+      margin: 8px 12px;
+      color: #111b21;
+    }
+    .whatsapp-description {
+      font-size: 14px;
+      margin: 4px 12px 8px;
+      color: #667781;
+    }
+    .whatsapp-url {
+      display: block;
+      font-size: 14px;
+      margin: 0 12px 12px;
+      color: #667781;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>תצוגה מקדימה לפרסום לינקים בסושיאל</h1>
+  
+  <input id="urlInput" type="text" placeholder="הדבק את הקישור כאן">
+  <button onclick="generatePreview()">הצג תצוגה מקדימה</button>
+
+  <div class="tabs hidden">
+    <div class="tab active" onclick="showTab('facebook')">Facebook</div>
+    <div class="tab" onclick="showTab('whatsapp')">Whatsapp</div>
+    <div class="tab" onclick="showTab('linkedin')">LinkedIn</div>
+    <div class="tab" onclick="showTab('twitter')">X (Twitter)</div>
+  </div>
+
+  <!-- תצוגה מקדימה של Facebook -->
+  <div id="facebookPreview" class="preview hidden">
+    <div class="preview-header">
+      <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Profile">
+      <div>
+        <strong>שם משתמש</strong>
+        לפני X דקות · <span>פייסבוק</span>
+      </div>
+    </div>
+    <div class="preview-content">
+      <img id="facebookImage" src="" alt="תמונה ראשית">
+    </div>
+    <div class="preview-body">
+      <h3 id="facebookTitle">כותרת</h3>
+      <p id="facebookDescription">תיאור</p>
+    </div>
+    <div class="preview-footer">
+      <div><i class="fas fa-thumbs-up"></i> 7 לייקים</div>
+      <div>4 תגובות</div>
+    </div>
+    <div class="preview-actions">
+      <button><i class="fas fa-thumbs-up"></i> לייק</button>
+      <button><i class="fas fa-comment-alt"></i> תגובה</button>
+      <button><i class="fas fa-share"></i> שיתוף</button>
+    </div>
+  </div>
+
+  <!-- תצוגה מקדימה של Whatsapp -->
+  <div id="whatsappPreview" class="preview hidden">
+    <div class="whatsapp-container">
+      <div class="whatsapp-header">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" class="whatsapp-logo">
+        <span class="whatsapp-time">18:13</span>
+      </div>
+      <div class="whatsapp-content">
+        <img id="whatsappImage" src="" alt="תמונה ראשית" class="whatsapp-main-image">
+        <h3 id="whatsappTitle" class="whatsapp-title"></h3>
+        <p id="whatsappDescription" class="whatsapp-description"></p>
+        <a id="whatsappUrl" href="" class="whatsapp-url" target="_blank"></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- תצוגה מקדימה של LinkedIn -->
+  <div id="linkedinPreview" class="preview hidden">
+    <div class="preview-header">
+      <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn Icon" style="width: 40px; height: 40px;">
+      <div>
+        <strong>שם משתמש</strong>
+        לפני X דקות · <span>LinkedIn</span>
+      </div>
+    </div>
+    <div class="preview-content">
+      <img id="linkedinImage" src="" alt="תמונה ראשית">
+    </div>
+    <div class="preview-body">
+      <h3 id="linkedinTitle">כותרת</h3>
+      <p id="linkedinDescription">תיאור</p>
+    </div>
+  </div>
+
+  <!-- תצוגה מקדימה של Twitter -->
+  <div id="twitterPreview" class="preview hidden">
+    <div class="preview-header">
+      <img src="https://cdn-icons-png.flaticon.com/512/5969/5969020.png" alt="Twitter Icon" style="width: 40px; height: 40px;">
+      <div>
+        <strong>שם משתמש</strong>
+        לפני X דקות · <span>X (Twitter)</span>
+      </div>
+    </div>
+    <div class="preview-content">
+      <img id="twitterImage" src="" alt="תמונה ראשית">
+    </div>
+    <div class="preview-body">
+      <h3 id="twitterTitle">כותרת</h3>
+      <p id="twitterDescription">תיאור</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // פונקציה לבדיקת כיוון הטקסט
+  function isRtl(text) {
+    const rtlChar = /[\u0591-\u07FF\uFB1D-\uFDFD\uFE70-\uFEFC]/;
+    return rtlChar.test(text);
+  }
+
+  // פונקציה לקבלת מטא דאטה מהקישור
+  async function fetchMetaData(url) {
+    try {
+      const response = await fetch(`https://api.linkpreview.net/?key=8bca1c4f073576d92dcd63a23bdfae96&q=${url}`);
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error fetching metadata:', error);
+    }
+  }
+
+  // פונקציה ליצירת התצוגה המקדימה
+  async function generatePreview() {
+    const url = document.getElementById('urlInput').value;
+
+    // הצגת הטאבים ותצוגות המקדימות
+    showPreviewElements();
+
+    const metaData = await fetchMetaData(url);
+
+    if (metaData) {
+      document.getElementById('facebookTitle').textContent = metaData.title;
+      document.getElementById('facebookDescription').textContent = metaData.description;
+      document.getElementById('facebookImage').src = metaData.image;
+
+      document.getElementById('whatsappTitle').textContent = metaData.title;
+      document.getElementById('whatsappDescription').textContent = metaData.description;
+      document.getElementById('whatsappImage').src = metaData.image;
+      document.getElementById('whatsappUrl').href = url;
+
+      document.getElementById('linkedinTitle').textContent = metaData.title;
+      document.getElementById('linkedinDescription').textContent = metaData.description;
+      document.getElementById('linkedinImage').src = metaData.image;
+
+      document.getElementById('twitterTitle').textContent = metaData.title;
+      document.getElementById('twitterDescription').textContent = metaData.description;
+      document.getElementById('twitterImage').src = metaData.image;
+
+      // בדיקת כיוון טקסט לכל אחת מהתצוגות
+      setDirection(metaData.title, metaData.description, 'facebook');
+      setDirection(metaData.title, metaData.description, 'whatsapp');
+      setDirection(metaData.title, metaData.description, 'linkedin');
+      setDirection(metaData.title, metaData.description, 'twitter');
+    }
+  }
+
+  function setDirection(title, description, platform) {
+    if (isRtl(title) || isRtl(description)) {
+      document.getElementById(`${platform}Title`).style.direction = 'rtl';
+      document.getElementById(`${platform}Description`).style.direction = 'rtl';
+    } else {
+      document.getElementById(`${platform}Title`).style.direction = 'ltr';
+      document.getElementById(`${platform}Description`).style.direction = 'ltr';
+    }
+  }
+
+  // פונקציה להצגת הטאב הנכון
+  function showTab(platform) {
+    const tabs = document.querySelectorAll('.tab');
+    const previews = document.querySelectorAll('.preview');
+
+    tabs.forEach(tab => tab.classList.remove('active'));
+    previews.forEach(preview => preview.classList.remove('active'));
+
+    document.getElementById(`${platform}Preview`).classList.add('active');
+    document.querySelector(`.tab[onclick="showTab('${platform}')"]`).classList.add('active');
+  }
+
+  // פונקציה להפוך את הטאבים והתצוגות לגלויים
+  function showPreviewElements() {
+    document.querySelector('.tabs').classList.remove('hidden');
+    document.querySelectorAll('.preview').forEach(preview => preview.classList.remove('hidden'));
+    activateDefaultTab();
+  }
+
+  // הפעלת הטאב הראשון ברירת מחדל
+  function activateDefaultTab() {
+    showTab('facebook');
+  }
+</script>
+</body>
+</html>
