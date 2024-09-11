@@ -39,7 +39,6 @@
       display: flex;
       justify-content: space-around;
       margin-bottom: 20px;
-      margin-top: 20px; /* ריווח נוסף בין הטאבים לכפתור */
     }
     .tab {
       cursor: pointer;
@@ -118,8 +117,10 @@
     .preview-actions button {
       background: none;
       border: none;
-      color: #606770;
+      color: #0077b5;
       cursor: pointer;
+      display: flex;
+      align-items: center;
     }
     .preview-actions button i {
       margin-left: 5px;
@@ -130,56 +131,134 @@
     .hidden {
       display: none;
     }
-    .whatsapp-container {
-      background-color: white; /* צבע רקע לבן */
-      border: 1px solid #dddfe2; /* מסגרת אפורה דקה */
+    .whatsapp-container, .linkedin-container {
+      background-color: white;
+      border: 1px solid #dddfe2;
       border-radius: 8px;
       padding: 10px;
       max-width: 300px;
       margin: 0 auto;
       box-shadow: 0 1px 0.5px rgba(0,0,0,0.13);
     }
-    .whatsapp-header {
+    .whatsapp-header, .linkedin-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 5px;
     }
-    .whatsapp-logo {
-      width: 20px;
-      height: 20px;
+    .whatsapp-logo, .linkedin-logo {
+      width: 40px;
+      height: 40px;
     }
-    .whatsapp-time {
+    .whatsapp-time, .linkedin-time {
       font-size: 12px;
       color: #667781;
     }
-    .whatsapp-content {
+    .whatsapp-content, .linkedin-content {
       background-color: white;
       border-radius: 6px;
       overflow: hidden;
     }
-    .whatsapp-main-image {
+    .whatsapp-main-image, .linkedin-main-image {
       width: 100%;
       height: auto;
       display: block;
     }
-    .whatsapp-title {
+    .whatsapp-title, .linkedin-title {
       font-size: 16px;
       font-weight: bold;
       margin: 8px 12px;
       color: #111b21;
     }
-    .whatsapp-description {
+    .whatsapp-description, .linkedin-description {
       font-size: 14px;
       margin: 4px 12px 8px;
       color: #667781;
     }
-    .whatsapp-url {
+    .whatsapp-url, .linkedin-url {
       display: block;
       font-size: 14px;
       margin: 0 12px 12px;
       color: #667781;
       text-decoration: none;
+    }
+
+    /* LinkedIn Post Specific Styles */
+    .linkedin-post {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #fff;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+    .linkedin-post-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .linkedin-profile-pic {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+    .linkedin-profile-info {
+      font-size: 14px;
+    }
+    .linkedin-profile-info strong {
+      display: block;
+    }
+    .linkedin-post-content {
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .linkedin-post-media {
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .linkedin-post-media img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+    .linkedin-post-footer {
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: #606770;
+    }
+    .linkedin-post-footer div {
+      display: flex;
+      align-items: center;
+    }
+    .linkedin-post-footer div span {
+      margin-left: 5px;
+    }
+    .linkedin-post-actions {
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: #0077b5;
+    }
+    .linkedin-post-actions button {
+      background: none;
+      border: none;
+      color: #0077b5;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+    .linkedin-post-actions button img {
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+    }
+    .linkedin-post-actions button:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -195,7 +274,7 @@
     <div class="tab active" onclick="showTab('facebook')">Facebook</div>
     <div class="tab" onclick="showTab('whatsapp')">Whatsapp</div>
     <div class="tab" onclick="showTab('linkedin')">LinkedIn</div>
-    <div class="tab" onclick="showTab('twitter')">X (Twitter)</div>
+    <div class="tab" onclick="showTab('twitter')">Twitter</div>
   </div>
 
   <!-- תצוגה מקדימה של Facebook -->
@@ -225,41 +304,49 @@
     </div>
   </div>
 
+  <!-- תצוגה מקדימה של LinkedIn -->
+  <div id="linkedinPreview" class="preview hidden">
+    <div class="linkedin-post">
+      <div class="linkedin-post-header">
+        <img src="https://cdn-icons-png.flaticon.com/512/145/145807.png" alt="LinkedIn Logo" class="linkedin-logo">
+        <div class="linkedin-profile-info">
+          <strong>LinkedIn</strong>
+          <span>Software Engineer at XYZ Corp</span>
+          <span>DD-MM-YYYY</span>
+        </div>
+      </div>
+      <div class="linkedin-post-content">
+        <!-- התוכן יכנס כאן באמצעות JavaScript -->
+      </div>
+      <div class="linkedin-post-media">
+        <img id="linkedinImage" src="" alt="Media">
+      </div>
+      <div class="linkedin-post-actions">
+        <button><img src="https://cdn-icons-png.flaticon.com/512/2550/2550207.png" alt="Share"> Share</button>
+        <button><img src="https://cdn-icons-png.flaticon.com/512/7325/7325193.png" alt="Repost"> Repost</button>
+        <button><img src="https://cdn-icons-png.flaticon.com/512/7647/7647567.png" alt="Comment"> Comment</button>
+        <button><img src="https://cdn-icons-png.flaticon.com/512/9513/9513802.png" alt="Like"> Like</button>
+      </div>
+    </div>
+  </div>
+
   <!-- תצוגה מקדימה של Whatsapp -->
   <div id="whatsappPreview" class="preview hidden">
     <div class="whatsapp-container">
       <div class="whatsapp-header">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Logo" class="whatsapp-logo">
-        <span class="whatsapp-time">18:13</span>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="Whatsapp Logo" class="whatsapp-logo">
+        <span class="whatsapp-time">לפני X דקות</span>
       </div>
       <div class="whatsapp-content">
         <img id="whatsappImage" src="" alt="תמונה ראשית" class="whatsapp-main-image">
         <h3 id="whatsappTitle" class="whatsapp-title">כותרת</h3>
         <p id="whatsappDescription" class="whatsapp-description">תיאור</p>
+        <a id="whatsappUrl" href="" class="whatsapp-url">קישור</a>
       </div>
-      <a id="whatsappUrl" href="" class="whatsapp-url">קישור</a>
     </div>
   </div>
 
-  <!-- תצוגה מקדימה של LinkedIn -->
-  <div id="linkedinPreview" class="preview hidden">
-    <div class="preview-header">
-      <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn Icon" style="width: 40px; height: 40px;">
-      <div>
-        <strong>שם משתמש</strong>
-        לפני X דקות · <span>X (LinkedIn)</span>
-      </div>
-    </div>
-    <div class="preview-content">
-      <img id="linkedinImage" src="" alt="תמונה ראשית">
-    </div>
-    <div class="preview-body">
-      <h3 id="linkedinTitle">כותרת</h3>
-      <p id="linkedinDescription">תיאור</p>
-    </div>
-  </div>
-
-  <!-- תצוגה מקדימה של Twitter -->
+  <!-- תצוגה מקדימה של X (Twitter) -->
   <div id="twitterPreview" class="preview hidden">
     <div class="preview-header">
       <img src="https://cdn-icons-png.flaticon.com/512/5969/5969020.png" alt="Twitter Icon" style="width: 40px; height: 40px;">
@@ -276,7 +363,6 @@
       <p id="twitterDescription">תיאור</p>
     </div>
   </div>
-
 </div>
 
 <script>
@@ -307,19 +393,22 @@
     const metaData = await fetchMetaData(url);
 
     if (metaData) {
+      // עדכון תצוגה מקדימה של פייסבוק
       document.getElementById('facebookTitle').textContent = metaData.title;
       document.getElementById('facebookDescription').textContent = metaData.description;
       document.getElementById('facebookImage').src = metaData.image;
 
+      // עדכון תצוגה מקדימה של וואטסאפ
       document.getElementById('whatsappTitle').textContent = metaData.title;
       document.getElementById('whatsappDescription').textContent = metaData.description;
       document.getElementById('whatsappImage').src = metaData.image;
       document.getElementById('whatsappUrl').href = url;
 
-      document.getElementById('linkedinTitle').textContent = metaData.title;
-      document.getElementById('linkedinDescription').textContent = metaData.description;
+      // עדכון התוכן של הפוסט בלינקדאין
+      document.querySelector('.linkedin-post-content').textContent = metaData.description;
       document.getElementById('linkedinImage').src = metaData.image;
 
+      // עדכון תצוגה מקדימה של טוויטר
       document.getElementById('twitterTitle').textContent = metaData.title;
       document.getElementById('twitterDescription').textContent = metaData.description;
       document.getElementById('twitterImage').src = metaData.image;
