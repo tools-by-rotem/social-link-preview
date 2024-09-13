@@ -39,6 +39,7 @@
       display: flex;
       justify-content: space-around;
       margin-bottom: 20px;
+      margin-top: 20px;
     }
     .tab {
       cursor: pointer;
@@ -277,32 +278,32 @@
     <div class="tab" onclick="showTab('twitter')">Twitter</div>
   </div>
 
-  <!-- תצוגה מקדימה של Facebook -->
-  <div id="facebookPreview" class="preview hidden">
-    <div class="preview-header">
-      <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Profile">
-      <div>
-        <strong>שם משתמש</strong>
-        לפני X דקות · <span>פייסבוק</span>
-      </div>
+<!-- תצוגה מקדימה של Facebook -->
+<div id="facebookPreview" class="preview hidden">
+  <div class="preview-header">
+    <img src="https://www.facebook.com/images/fb_icon_325x325.png" alt="Profile">
+    <div>
+      <strong>שם משתמש</strong>
+      לפני X דקות · <span>פייסבוק</span>
     </div>
-    <div class="preview-content">
-      <img id="facebookImage" src="" alt="תמונה ראשית">
-    </div>
-    <div class="preview-body">
-      <h3 id="facebookTitle">כותרת</h3>
-      <p id="facebookDescription">תיאור</p>
-    </div>
-    <div class="preview-footer">
+  </div>
+  <div class="preview-content">
+    <img id="facebookImage" src="" alt="תמונה ראשית">
+  </div>
+  <div class="preview-body">
+    <h3 id="facebookTitle">כותרת</h3>
+    <p id="facebookDescription">תיאור</p>
+  </div>
+<div class="preview-footer">
       <div><i class="fas fa-thumbs-up"></i> X לייקים</div>
       <div>X תגובות</div>
     </div>
-    <div class="preview-actions">
-      <button><i class="fas fa-thumbs-up"></i> לייק</button>
-      <button><i class="fas fa-comment-alt"></i> תגובה</button>
-      <button><i class="fas fa-share"></i> שיתוף</button>
-    </div>
+  <div class="preview-actions">
+    <button><img src="https://cdn-icons-png.flaticon.com/512/3114/3114886.png" alt="Like" style="width: 16px; height: 16px;"> לייק</button>
+    <button><img src="https://cdn-icons-png.flaticon.com/512/5948/5948565.png" alt="Comment" style="width: 16px; height: 16px;"> תגובה</button>
+    <button><img src="https://cdn-icons-png.flaticon.com/512/2958/2958783.png" alt="Share" style="width: 16px; height: 16px;"> שיתוף</button>
   </div>
+</div>
 
   <!-- תצוגה מקדימה של LinkedIn -->
   <div id="linkedinPreview" class="preview hidden">
@@ -341,7 +342,7 @@
         <img id="whatsappImage" src="" alt="תמונה ראשית" class="whatsapp-main-image">
         <h3 id="whatsappTitle" class="whatsapp-title">כותרת</h3>
         <p id="whatsappDescription" class="whatsapp-description">תיאור</p>
-        <a id="whatsappUrl" href="" class="whatsapp-url">קישור</a>
+        <a id="whatsappUrl" href="" class="whatsapp-url"></a>
       </div>
     </div>
   </div>
