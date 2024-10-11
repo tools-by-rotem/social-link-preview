@@ -261,6 +261,38 @@
     .linkedin-post-actions button:hover {
       text-decoration: underline;
     }
+    
+    .twitter-interaction {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    width: 100%;
+}
+
+.interaction-button {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.interaction-button img {
+    width: 20px;
+    height: 20px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.interaction-button span {
+    font-size: 14px;
+    color: #666;
+}
+
+.interaction-button img:hover {
+    color: #1DA1F2;
+}
+    
   </style>
 </head>
 <body>
@@ -363,7 +395,19 @@
       <h3 id="twitterTitle">כותרת</h3>
       <p id="twitterDescription">תיאור</p>
     </div>
-  </div>
+    <div class="twitter-interaction">
+    <div class="interaction-button">
+        <img src="https://cdn-icons-png.flaticon.com/512/7647/7647567.png" alt="Comment">
+    </div>
+    <div class="interaction-button">
+        <img src="https://cdn-icons-png.flaticon.com/512/7325/7325193.png" alt="Retweet">
+    </div>
+    <div class="interaction-button">
+        <img src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png " alt="Like">
+    </div>
+    <div class="interaction-button">
+        <img src="https://cdn-icons-png.flaticon.com/512/8241/8241611.png " alt="Stats">
+    </div>
 </div>
 
 <script>
